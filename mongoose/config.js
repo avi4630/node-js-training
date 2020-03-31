@@ -1,8 +1,7 @@
-const url = process.env.URL;
-const port = process.env.PORT;
-const dbName = process.env.NAME;
 
+const URL=process.env.URL||"mongodb://localhost:27017/mymdb"
 module.exports = {
-  url: "mongodb://localhost:27017/mymdb"
+  //url: "mongodb://localhost:27017/mymdb"
+  url:URL
 }
 

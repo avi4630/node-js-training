@@ -2,14 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dbConfig = require('./config.js');
 const mongoose = require('mongoose');
+const http=require('http');
 const app = express();
+const PORT=process.env.PORT || 3005
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 
 const routerObj = require('./userRout');
-app.use('/user',routerObj);
+app.use('/',routerObj);
 
 mongoose.Promise = global.Promise;
 // Connecting to the database
@@ -22,8 +24,8 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+http.createServer(app).listen(PORT, () => {
+    console.log("Server is listening on port");
 });
 
 
